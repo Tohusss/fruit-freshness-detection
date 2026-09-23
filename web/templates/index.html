@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Freshness Detection</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        #previewImage { display: none; }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-start justify-center min-h-screen pt-20 pb-20">
+
+<div class="w-full max-w-xl bg-white shadow-2xl rounded-3xl p-12 text-center">
+
+    <h1 class="text-3xl font-extrabold text-gray-800 mb-2">
+        🍎 Fruit Freshness Detection
+    </h1>
+
+    <p class="text-gray-600 text-lg mb-10">
+        Detects: Apple · Banana · Strawberry
+    </p>
+
+    {% if not fruit %}
+    <form action="/predict" method="post" enctype="multipart/form-data"
+          class="space-y-10">
+
+        <label for="fileInput"
+               class="cursor-pointer flex flex-col items-center justify-center 
+                      border-2 border-dashed border-gray-300 rounded-2xl py-12
+                      bg-gray-50 hover:bg-gray-100 transition">
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-indigo-600 mb-4" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6h.1a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+            </svg>
+
+            <p class="font-medium text-gray-700 text-lg">Click to upload or drag & drop</p>
+            <p class="text-sm text-gray-500">PNG, JPG, JPEG accepted</p>
+
+            <input id="fileInput" type="file" name="image" class="hidden" accept="image/*" required />
+        </label>
+
+        <div class="mt-2">
+            <img id="previewImage" class="mx-auto rounded-xl shadow-xl w-64 h-64 object-cover" />
+            <p id="uploadStatus" class="text-green-600 font-semibold mt-3"></p>
+        </div>
+
+        <button type="submit"
+                class="w-full py-4 bg-indigo-600 text-white text-lg font-semibold rounded-xl shadow-lg
+                       hover:bg-indigo-700 hover:scale-[1.02] active:scale-95 transition">
+            Predict
+        </button>
+    </form>
+    {% endif %}
+
+    {% if fruit %}
+    <div class="mt-6 bg-gray-50 border border-gray-200 rounded-2xl p-8 shadow-inner mb-10">
+        
+        <p class="text-xl font-bold text-gray-800">
+            Fruit: <span class="text-indigo-600">{{ fruit }}</span>
+        </p>
+        <p class="text-lg text-gray-700 mt-1">
+            Confidence: <span class="text-indigo-600">{{ fruit_conf }}%</span>
+        </p>
+
+        <p class="text-xl font-bold text-gray-800 mt-4">
+            Freshness: <span class="text-indigo-600">{{ freshness }}</span>
+        </p>
+        <p class="text-lg text-gray-700 mt-1">
+             Confidence: <span class="text-indigo-600">{{ freshness_conf }}%</span>
+        </p>
+    </div>
+
+    <a href="/"
+       class="inline-block w-full py-4 bg-indigo-600 text-white text-lg font-semibold rounded-xl shadow-lg
+              hover:bg-indigo-700 hover:scale-[1.02] active:scale-95 transition">
+        Upload Another Image
+    </a>
+    {% endif %}
+
+</div>
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const previewImage = document.getElementById('previewImage');
+    const uploadStatus = document.getElementById('uploadStatus');
+
+    if (fileInput) {
+        fileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                previewImage.src = URL.createObjectURL(file);
+                previewImage.style.display = "block";
+                uploadStatus.textContent = "Image uploaded successfully ✔";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -27,8 +27,8 @@ An image-based machine learning application for automated fruit freshness detect
 - `web/` – web interface files
 - `app.py` – main application entry point
 - `models/` – trained model weights
-- `outputs/` – generated prediction results
-- `data/` – dataset or sample images
+- `data/` – sample dataset images
+- `screenshots/` – application and prediction screenshots
 
 ## How to Run
 
@@ -36,3 +36,10 @@ An image-based machine learning application for automated fruit freshness detect
 
 ```bash
 git clone https://github.com/Tohusss/fruit-freshness-detection.git
+## Screenshots
+
+### Application Interface
+![Application Interface](screenshots/app-interface.png)
+
+### Prediction Result
+![Prediction Result](screenshots/prediction-result.png)

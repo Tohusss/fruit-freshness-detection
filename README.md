@@ -36,6 +36,7 @@ An image-based machine learning application for automated fruit freshness detect
 
 ```bash
 git clone https://github.com/Tohusss/fruit-freshness-detection.git
+
 ## Screenshots
 
 ### Application Interface

@@ -29,13 +29,15 @@ An image-based machine learning application for automated fruit freshness detect
 - `models/` – trained model weights
 - `data/` – sample dataset images
 - `screenshots/` – application and prediction screenshots
+- `requirements.txt` – required Python dependencies
 
 ## How to Run
 
-1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Tohusss/fruit-freshness-detection.git
+
 
 ## Screenshots
 
